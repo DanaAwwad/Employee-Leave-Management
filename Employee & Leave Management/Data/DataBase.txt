@@ -1,0 +1,20 @@
+﻿CREATE DataBase EmployeeDB;
+USE EmployeeDB;
+
+CREATE TABLE Employees
+(
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL,
+    RemainingLeaveDays INT,
+    IsDeleted BIT DEFAULT 0
+);
+
+CREATE TABLE LeaveRequests
+(
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    EmployeeId INT NOT NULL,
+    RequestedDays INT NOT NULL,
+    Status INT NOT NULL,
+    FOREIGN KEY (EmployeeId)
+        REFERENCES Employees(Id)
+);
